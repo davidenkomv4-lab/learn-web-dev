@@ -3,24 +3,152 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Выбор даты и времени</title>
+    <title>Lumina — Выбор даты и времени</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <!--
-      ЗАДАНИЕ
-      ========
-      Сверстать страницу выбора даты и времени по своему макету.
-
-      Пока это только вёрстка. Никакого JavaScript — ни кликов,
-      ни переходов, ни выбора дня. Всё статично.
-
-      Стили пишите в styles.css. Разметку — здесь.
-    -->
-
     <div class="page">
-      <!-- Начните отсюда. Разметьте шапку, основную область
-           с календарём и слотами, подвал. -->
+      <header class="header">
+        <a href="#" class="logo">LUMINA</a>
+        <nav class="nav">
+          <a href="#" class="nav-link">Услуги</a>
+          <a href="#" class="nav-link">Мастера</a>
+          <a href="#" class="nav-link">Отзывы</a>
+          <a href="#" class="nav-link">Контакты</a>
+        </nav>
+        <button class="header-btn" type="button">Записаться</button>
+      </header>
+
+      <main class="main">
+        <div class="steps">
+          <div class="step step--done">
+            <span class="step-num">1</span>
+            <span class="step-label">Мастер</span>
+          </div>
+          <div class="step-line step-line--done"></div>
+          <div class="step step--done">
+            <span class="step-num">2</span>
+            <span class="step-label">Услуга</span>
+          </div>
+          <div class="step-line step-line--done"></div>
+          <div class="step step--current">
+            <span class="step-num">3</span>
+            <span class="step-label">Дата</span>
+          </div>
+          <div class="step-line"></div>
+          <div class="step">
+            <span class="step-num">4</span>
+            <span class="step-label">Контакты</span>
+          </div>
+          <div class="step-line"></div>
+          <div class="step">
+            <span class="step-num">5</span>
+            <span class="step-label">Готово</span>
+          </div>
+        </div>
+
+        <h1 class="title">Выберите дату и время</h1>
+        <p class="subtitle">Анна Смирнова · Стрижка женская · Шаг 3 из 5</p>
+
+        <div class="panels">
+          <section class="calendar-panel">
+            <div class="calendar-top">
+              <h2 class="calendar-month">Июнь 2026</h2>
+              <div class="calendar-arrows">
+                <button class="arrow-btn" type="button" aria-label="Предыдущий месяц">
+                  ‹
+                </button>
+                <button class="arrow-btn" type="button" aria-label="Следующий месяц">
+                  ›
+                </button>
+              </div>
+            </div>
+
+            <div class="weekdays">
+              <span>Пн</span>
+              <span>Вт</span>
+              <span>Ср</span>
+              <span>Чт</span>
+              <span>Пт</span>
+              <span>Сб</span>
+              <span>Вс</span>
+            </div>
+
+            <div class="days">
+              <button class="day day--muted" type="button">26</button>
+              <button class="day day--muted" type="button">27</button>
+              <button class="day day--muted" type="button">28</button>
+              <button class="day day--muted" type="button">29</button>
+              <button class="day day--muted" type="button">30</button>
+              <button class="day day--muted" type="button">31</button>
+              <button class="day" type="button">1</button>
+              <button class="day" type="button">2</button>
+              <button class="day" type="button">3</button>
+              <button class="day" type="button">4</button>
+              <button class="day" type="button">5</button>
+              <button class="day" type="button">6</button>
+              <button class="day" type="button">7</button>
+              <button class="day" type="button">8</button>
+              <button class="day" type="button">9</button>
+              <button class="day" type="button">10</button>
+              <button class="day" type="button">11</button>
+              <button class="day" type="button">12</button>
+              <button class="day" type="button">13</button>
+              <button class="day" type="button">14</button>
+              <button class="day day--selected" type="button">15</button>
+              <button class="day" type="button">16</button>
+              <button class="day" type="button">17</button>
+              <button class="day" type="button">18</button>
+              <button class="day" type="button">19</button>
+              <button class="day" type="button">20</button>
+              <button class="day" type="button">21</button>
+              <button class="day" type="button">22</button>
+              <button class="day" type="button">23</button>
+              <button class="day" type="button">24</button>
+              <button class="day" type="button">25</button>
+              <button class="day" type="button">26</button>
+              <button class="day" type="button">27</button>
+              <button class="day" type="button">28</button>
+              <button class="day" type="button">29</button>
+              <button class="day" type="button">30</button>
+            </div>
+          </section>
+
+          <section class="slots-panel">
+            <h2 class="slots-title">Доступное время</h2>
+            <div class="slots-grid">
+              <button class="slot" type="button">10:00</button>
+              <button class="slot slot--busy" type="button" disabled>
+                11:00
+                <span class="slot-hint">Занято</span>
+              </button>
+              <button class="slot slot--selected" type="button">12:00</button>
+              <button class="slot slot--busy" type="button" disabled>
+                13:00
+                <span class="slot-hint">Занято</span>
+              </button>
+              <button class="slot" type="button">14:00</button>
+              <button class="slot" type="button">15:00</button>
+              <button class="slot" type="button">16:00</button>
+              <button class="slot" type="button">17:00</button>
+            </div>
+          </section>
+        </div>
+
+        <div class="bottom-bar">
+          <div class="selected-summary">
+            <span class="summary-label">Выбрано:</span>
+            <span class="summary-value">15 июня, 12:00</span>
+          </div>
+          <button class="next-btn" type="button">Далее →</button>
+        </div>
+      </main>
     </div>
   </body>
 </html>
