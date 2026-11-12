@@ -3,12 +3,114 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Выбор даты и времени</title>
+    <title>Lumina — Выбор даты и времени</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     <div class="page">
-      <!-- Перенесите вашу верстку. Удалите статичные данные. Подключите скрипт -->
+      <header class="header">
+        <a href="#" class="logo">LUMINA</a>
+        <nav class="nav">
+          <a href="#" class="nav-link">Услуги</a>
+          <a href="#" class="nav-link">Мастера</a>
+          <a href="#" class="nav-link">Отзывы</a>
+          <a href="#" class="nav-link">Контакты</a>
+        </nav>
+        <button class="header-btn" type="button">Записаться</button>
+      </header>
+
+      <main class="main">
+        <div class="steps">
+          <div class="step step--done">
+            <span class="step-num">1</span>
+            <span class="step-label">Мастер</span>
+          </div>
+          <div class="step-line step-line--done"></div>
+          <div class="step step--done">
+            <span class="step-num">2</span>
+            <span class="step-label">Услуга</span>
+          </div>
+          <div class="step-line step-line--done"></div>
+          <div class="step step--current">
+            <span class="step-num">3</span>
+            <span class="step-label">Дата</span>
+          </div>
+          <div class="step-line"></div>
+          <div class="step">
+            <span class="step-num">4</span>
+            <span class="step-label">Контакты</span>
+          </div>
+          <div class="step-line"></div>
+          <div class="step">
+            <span class="step-num">5</span>
+            <span class="step-label">Готово</span>
+          </div>
+        </div>
+
+        <h1 class="title">Выберите дату и время</h1>
+        <p class="subtitle">Анна Смирнова · Стрижка женская · Шаг 3 из 5</p>
+
+        <div class="panels">
+          <section class="calendar-panel">
+            <div class="calendar-top">
+              <!-- Название месяца подставляет script.js -->
+              <h2 class="calendar-month"></h2>
+              <div class="calendar-arrows">
+                <button
+                  class="arrow-btn arrow-btn--prev"
+                  type="button"
+                  aria-label="Предыдущий месяц"
+                >
+                  ‹
+                </button>
+                <button
+                  class="arrow-btn arrow-btn--next"
+                  type="button"
+                  aria-label="Следующий месяц"
+                >
+                  ›
+                </button>
+              </div>
+            </div>
+
+            <div class="weekdays">
+              <span>Пн</span>
+              <span>Вт</span>
+              <span>Ср</span>
+              <span>Чт</span>
+              <span>Пт</span>
+              <span>Сб</span>
+              <span>Вс</span>
+            </div>
+
+            <!-- Дни месяца рисует script.js -->
+            <div class="days"></div>
+          </section>
+
+          <section class="slots-panel">
+            <h2 class="slots-title">Доступное время</h2>
+            <!-- Слоты времени рисует script.js -->
+            <div class="slots-grid"></div>
+          </section>
+        </div>
+
+        <div class="bottom-bar">
+          <div class="selected-summary">
+            <span class="summary-label">Выбрано:</span>
+            <!-- Выбранную дату и время подставляет script.js -->
+            <span class="summary-value"></span>
+          </div>
+          <button class="next-btn" type="button" disabled>Далее →</button>
+        </div>
+      </main>
     </div>
+
+    <script src="script.js"></script>
   </body>
 </html>
