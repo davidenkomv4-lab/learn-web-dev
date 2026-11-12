@@ -1,57 +1,97 @@
-// App — корневой компонент приложения.
+// App — корневой компонент: страница выбора даты и времени на React.
 //
-// ЗАДАНИЕ
-// --------
-// Перенесите свою страницу выбора даты и времени из нативного JS
-// на React. У вас уже есть:
-//   - готовая вёрстка (HTML);
-//   - готовые стили (CSS);
-//   - рабочий код на нативном JS (валидация дат, рендер календаря,
-//     обработчики кликов, выбор слота).
+// Здесь живёт всё состояние страницы (useState), а дочерние
+// компоненты получают данные и колбэки через пропсы.
 //
-// Теперь нужно то же самое сделать в React.
-//
-// ЧТО НУЖНО СДЕЛАТЬ
-// ------------------
-// 1. Разбить страницу на компоненты. Как именно — решайте сами.
-//    Обычно выделяют: шапку, подвал, календарь, сетку слотов,
-//    нижнюю панель.
-//
-// 2. Перенести вёрстку из HTML в JSX. Стили оставить как есть,
-//    просто положить их в тот же проект (например, в src/styles/
-//    или рядом с компонентами).
-//
-// 3. Заменить нативное состояние (переменные + прямые манипуляции
-//    с DOM) на useState. Какие именно данные должны жить в состоянии —
-//    подумайте сами. Скорее всего: текущий месяц, выбранный день,
-//    выбранное время, массив слотов.
-//
-// 4. Рендер календаря и слотов делать через JSX и .map(),
-//    без innerHTML и querySelector.
-//
-// 5. Обработчики кликов — через onClick прямо в JSX,
-//    без addEventListener.
-//
-// 6. Функции для работы с датами, которые вы уже написали
-//    на нативном JS (построение сетки календаря, сравнение дат,
-//    проверка «не раньше сегодня»), можно переиспользовать.
-//    Они чистые — не зависят от React. Создайте файл
-//    src/utils/date.js и перенесите их туда.
-//
-//
-// ПОДСКАЗКА
-// ---------
-// Если что-то не работает или непонятно, как перевести нативный
-// код на React — вернитесь к лекции. Там разбирались все
-// основные приёмы: состояние, пропсы, рендер списков, колбэки.
-//
-// Ниже — пустой каркас. Здесь можно начать писать.
+// Что было в нативной версии → что стало здесь:
+//   глобальные переменные state       → useState
+//   innerHTML + сборка строк          → JSX и .map()
+//   addEventListener("click")         → onClick
+//   ручная перерисовка renderAll()    → React перерисует сам
+import { useState } from "react";
+import "./styles/booking.css";
+import Header from "./components/Header.jsx";
+import StepIndicator from "./components/StepIndicator.jsx";
+import Calendar from "./components/Calendar.jsx";
+import TimeSlots from "./components/TimeSlots.jsx";
+import BottomBar from "./components/BottomBar.jsx";
+import { getToday, shiftMonth } from "./utils/date.js";
+import { getSlotsForDate } from "./data/slots.js";
+
+// «Сегодня» считаем один раз при загрузке модуля.
+const today = getToday();
 
 function App() {
+  // Какой месяц показан в календаре.
+  const [viewYear, setViewYear] = useState(today.year);
+  const [viewMonth, setViewMonth] = useState(today.month);
+
+  // Выбранный день (по умолчанию — сегодня) и выбранное время.
+  const [selectedDate, setSelectedDate] = useState(today);
+  const [selectedTime, setSelectedTime] = useState(null);
+
+  // Слоты не храним в состоянии: они однозначно вычисляются
+  // из выбранного дня, поэтому считаем их при рендере.
+  const slots = getSlotsForDate(selectedDate, today);
+
+  function handleSelectDay(day) {
+    setSelectedDate({ day, month: viewMonth, year: viewYear });
+    setSelectedTime(null); // при смене дня время сбрасываем обязательно
+  }
+
+  function handleSelectTime(time) {
+    setSelectedTime(time);
+  }
+
+  function handlePrevMonth() {
+    const prev = shiftMonth(viewYear, viewMonth, -1);
+    setViewYear(prev.year);
+    setViewMonth(prev.month);
+  }
+
+  function handleNextMonth() {
+    const next = shiftMonth(viewYear, viewMonth, 1);
+    setViewYear(next.year);
+    setViewMonth(next.month);
+  }
+
+  function handleNext() {
+    console.log("Выбрано:", selectedDate, selectedTime);
+  }
+
   return (
-    <div>
-      {/* Начните отсюда. Например, разметьте .page, добавьте шапку,
-            основную область, подвал. */}
+    <div className="page">
+      <Header />
+
+      <main className="main">
+        <StepIndicator current={3} />
+
+        <h1 className="title">Выберите дату и время</h1>
+        <p className="subtitle">Анна Смирнова · Стрижка женская · Шаг 3 из 5</p>
+
+        <div className="panels">
+          <Calendar
+            viewYear={viewYear}
+            viewMonth={viewMonth}
+            selectedDate={selectedDate}
+            today={today}
+            onSelectDay={handleSelectDay}
+            onPrevMonth={handlePrevMonth}
+            onNextMonth={handleNextMonth}
+          />
+          <TimeSlots
+            slots={slots}
+            selectedTime={selectedTime}
+            onSelectTime={handleSelectTime}
+          />
+        </div>
+
+        <BottomBar
+          selectedDate={selectedDate}
+          selectedTime={selectedTime}
+          onNext={handleNext}
+        />
+      </main>
     </div>
   );
 }
