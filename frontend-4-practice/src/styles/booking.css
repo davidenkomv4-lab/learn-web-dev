@@ -1,0 +1,435 @@
+/* ===== Reset & base ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  font-family: "Inter", sans-serif;
+  background: #f8f5f0;
+  color: #1a1a1a;
+}
+
+button {
+  font-family: inherit;
+  border: none;
+  background: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* ===== Page ===== */
+.page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* ===== Header ===== */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 72px;
+  padding: 0 48px;
+  background: #ffffff;
+  border-bottom: 1px solid #ede8e1;
+}
+
+.logo {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #1a3c34;
+  cursor: pointer;
+}
+
+.nav {
+  display: flex;
+  gap: 32px;
+}
+
+.nav-link {
+  font-size: 14px;
+  font-weight: 500;
+  color: #1a1a1a;
+  transition: color 0.2s ease;
+  cursor: pointer;
+}
+
+.nav-link:hover {
+  color: #1a3c34;
+}
+
+.header-btn {
+  padding: 10px 22px;
+  border-radius: 8px;
+  background: #1a3c34;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.header-btn:hover {
+  background: #143029;
+  box-shadow: 0 4px 12px rgba(26, 60, 52, 0.25);
+}
+
+/* ===== Main ===== */
+.main {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  max-width: 1024px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 32px 48px 48px;
+}
+
+/* ===== Steps ===== */
+.steps {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 28px;
+}
+
+.step {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.step-num {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #d9d9d9;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.step--done .step-num,
+.step--current .step-num {
+  background: #1a3c34;
+}
+
+.step-label {
+  font-size: 12px;
+  font-weight: 500;
+  color: #999999;
+}
+
+.step--done .step-label,
+.step--current .step-label {
+  color: #1a3c34;
+}
+
+.step-line {
+  width: 30px;
+  height: 2px;
+  background: #d9d9d9;
+  border-radius: 1px;
+}
+
+.step-line--done {
+  background: #1a3c34;
+}
+
+/* ===== Title ===== */
+.title {
+  font-size: 28px;
+  font-weight: 700;
+  color: #1a3c34;
+  margin-bottom: 8px;
+}
+
+.subtitle {
+  font-size: 14px;
+  font-weight: 400;
+  color: #666666;
+  margin-bottom: 32px;
+}
+
+/* ===== Panels ===== */
+.panels {
+  display: flex;
+  gap: 24px;
+  margin-bottom: 32px;
+}
+
+/* ===== Calendar ===== */
+.calendar-panel {
+  flex: 1;
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+}
+
+.calendar-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.calendar-month {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1a3c34;
+}
+
+.calendar-arrows {
+  display: flex;
+  gap: 8px;
+}
+
+.arrow-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: #f0ebe4;
+  color: #1a3c34;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.arrow-btn:hover {
+  background: #e4ddd4;
+}
+
+.weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+  margin-bottom: 8px;
+}
+
+.weekdays span {
+  text-align: center;
+  font-size: 12px;
+  font-weight: 500;
+  color: #999999;
+  padding: 4px 0;
+}
+
+.days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+}
+
+.day {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #1a1a1a;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.day:hover:not(.day--selected):not(.day--muted) {
+  background: #eef4f2;
+}
+
+.day--muted {
+  color: #c0c0c0;
+  cursor: default;
+}
+
+.day--selected {
+  background: #1a3c34;
+  color: #ffffff;
+}
+
+.day--selected:hover {
+  background: #143029;
+}
+
+/* ===== Time slots ===== */
+.slots-panel {
+  width: 340px;
+  flex-shrink: 0;
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+}
+
+.slots-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1a3c34;
+  margin-bottom: 16px;
+}
+
+.slots-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.slot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: calc(50% - 5px);
+  height: 48px;
+  border-radius: 10px;
+  border: 1.5px solid #e0e0e0;
+  background: #ffffff;
+  font-size: 15px;
+  font-weight: 600;
+  color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.slot:hover:not(.slot--busy):not(.slot--selected) {
+  border-color: #1a3c34;
+  box-shadow: 0 2px 8px rgba(26, 60, 52, 0.12);
+}
+
+.slot--selected {
+  background: #1a3c34;
+  border-color: #1a3c34;
+  color: #ffffff;
+}
+
+.slot--selected:hover {
+  background: #143029;
+  border-color: #143029;
+}
+
+.slot--busy {
+  background: #f5f5f5;
+  border-color: #e8e8e8;
+  color: #aaaaaa;
+  cursor: not-allowed;
+}
+
+.slot-hint {
+  font-size: 10px;
+  font-weight: 500;
+  color: #bbbbbb;
+  margin-top: 2px;
+}
+
+/* ===== Bottom bar ===== */
+.bottom-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
+  padding-top: 16px;
+  border-top: 1px solid #ede8e1;
+}
+
+.selected-summary {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.summary-label {
+  font-size: 14px;
+  color: #666666;
+}
+
+.summary-value {
+  font-size: 15px;
+  font-weight: 600;
+  color: #1a3c34;
+}
+
+.next-btn {
+  padding: 14px 32px;
+  border-radius: 10px;
+  background: #1a3c34;
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.next-btn:hover {
+  background: #143029;
+  box-shadow: 0 4px 16px rgba(26, 60, 52, 0.3);
+}
+
+/* ===== Состояния для JavaScript (задание 2) ===== */
+
+/* Прошедшие дни: приглушённые и некликабельные */
+.day--disabled {
+  color: #c0c0c0;
+  cursor: not-allowed;
+}
+
+.day--disabled:hover {
+  background: none;
+}
+
+/* Сегодняшний день — тонкая обводка */
+.day--today:not(.day--selected) {
+  box-shadow: inset 0 0 0 1.5px #1a3c34;
+}
+
+/* Сообщение, если в выбранный день нет слотов */
+.slots-empty {
+  font-size: 14px;
+  color: #999999;
+}
+
+/* Кнопка «Далее», пока время не выбрано */
+.next-btn:disabled {
+  background: #d9d9d9;
+  box-shadow: none;
+  cursor: not-allowed;
+}
+
+/* Стрелка «‹», когда листать назад некуда */
+.arrow-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* ===== Загрузка и ошибки (задание 4) ===== */
+.state-panel {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 48px 24px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+  text-align: center;
+}
+
+.state-message {
+  font-size: 14px;
+  color: #999999;
+}
+
+.state-message--error {
+  color: #c0392b;
+}
